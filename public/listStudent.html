@@ -60,7 +60,7 @@
 
     function getStudents() {
       $.ajax({
-        url: "http://localhost:5678/students", // URL to retrieve all students
+        url: "/students", // URL to retrieve all students
         dataType: "json", // Set the expected data type to JSON
         type: "get",
         success: function (response) {

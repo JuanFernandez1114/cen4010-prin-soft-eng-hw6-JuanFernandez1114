@@ -15,7 +15,7 @@ To develop/debug server:
 >nodemon studentserver.js
 
 To view studentserver webpage:
-"http://localhost:5678/"
+"/"
 
 To view studentserver api-docs:
-Go to the link "http://localhost:5678/api-docs/" on your browser.
+Go to the link "/api-docs/" on your browser.

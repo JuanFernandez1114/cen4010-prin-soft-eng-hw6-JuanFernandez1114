@@ -65,7 +65,7 @@
       var last_name = $("#last_name").val();
 
       $.ajax({
-        url: "http://localhost:5678/students/byLastName/" + last_name, // URL to filter students by last name
+        url: "/students/byLastName/" + last_name, // URL to filter students by last name
         dataType: "json", // Set the expected data type to JSON
         type: "get",
         success: function (response) {

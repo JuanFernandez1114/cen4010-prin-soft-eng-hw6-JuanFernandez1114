@@ -65,7 +65,7 @@
       var record_id = $("#record_id").val();
 
       $.ajax({
-        url: "http://localhost:5678/students/"+record_id,
+        url: "/students/"+record_id,
         type: "get",
         success: function (response) {
           var formattedJson = JSON.stringify(JSON.parse(response), null, 2); // Parse the JSON string and then stringify it with indentation
