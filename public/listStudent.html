@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>List All Students</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+          <form action="searchStudent.html" class="form-inline">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search by Last Name" name="last_name" id="last_name">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+  
+      <!-- Create a Bootstrap navigation bar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="addStudent.html">Add Student</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="updateStudent.html">Update Student</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="deleteStudent.html">Delete Student</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="displayStudent.html">Display Student</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="listStudent.html">List All Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="searchStudent.html">Search Student by Last Name</a>
+          </li>
+        </ul>
+      </nav>
+  
+      <p>Select one of the above options:</p>
+    </div>
+  <button onclick="getStudents()">Get All Students</button>
+  <br>
+  <br>
+  <div id="mydiv" name="mydiv"></div>
+  <a href="index2.html">Home</a>
+  <script>
+
+    function getStudents() {
+      $.ajax({
+        url: "http://localhost:5678/students", // URL to retrieve all students
+        dataType: "json", // Set the expected data type to JSON
+        type: "get",
+        success: function (response) {
+          var formattedJson = JSON.stringify(response, null, 2);
+          $("#mydiv").html('<pre>' + formattedJson + '</pre>');
+        },
+        error: function (xhr) {
+          console.log(xhr.responseText);
+          $("#mydiv").text('error: ' + xhr.responseText);
+        }
+      });
+    }
+
+  </script>
+
+</body>
+
+</html>

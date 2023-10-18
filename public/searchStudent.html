@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Search Student by Last Name</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+          <form action="searchStudent.html" class="form-inline">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search by Last Name" name="last_name" id="last_name">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+  
+      <!-- Create a Bootstrap navigation bar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="addStudent.html">Add Student</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="updateStudent.html">Update Student</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="deleteStudent.html">Delete Student</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="displayStudent.html">Display Student</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="listStudent.html">List All Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="searchStudent.html">Search Student by Last Name</a>
+          </li>
+        </ul>
+      </nav>
+  
+      <p>Select one of the above options:</p>
+    </div>
+  <h2>Search Student by Last Name</h2>
+
+  <label for="last_name">Last Name:</label>
+  <input type="text" id="last_name" name="last_name">
+  <button onclick="return filterStudentsByLastName()">Filter by Last Name</button>
+  <br><br>
+
+  <div id="mydiv" name="mydiv"></div>
+  <a href="index2.html">Home</a>
+  <script>
+    function filterStudentsByLastName() {
+      var last_name = $("#last_name").val();
+
+      $.ajax({
+        url: "http://localhost:5678/students/byLastName/" + last_name, // URL to filter students by last name
+        dataType: "json", // Set the expected data type to JSON
+        type: "get",
+        success: function (response) {
+          if (response.students && response.students.length > 0) {
+            var student = response.students[0]; // Get the first student in the array
+            var formattedStudent = `
+              <h3>Student Information:</h3>
+              <p>Record ID: ${student.record_id}</p>
+              <p>First Name: ${student.first_name}</p>
+              <p>Last Name: ${student.last_name}</p>
+              <p>GPA: ${student.gpa}</p>
+              <p>Enrolled: ${student.enrolled}</p>
+            `;
+            $("#mydiv").html(formattedStudent);
+          } else {
+            $("#mydiv").text("No student found with the last name '" + last_name + "'.");
+          }
+        },
+        error: function (xhr) {
+          console.log(xhr.responseText);
+          $("#mydiv").text('error: ' + xhr.responseText);
+        }
+      });
+
+      return false; // Prevent the default form submission
+    }
+  </script>
+</body>
+
+</html>
