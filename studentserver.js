@@ -379,7 +379,6 @@ app.get('/students/byLastName/:last_name', function (req, res) {
 });
 
 
-app.listen(5678); //start the server
-console.log('Server is running...');
-console.log('Webapp:   /')
-console.log('API Docs: /api-docs')
+port = process.env.PORT || 5678
+var listener = app.listen(port);
+console.log('server is running on: http://localhost:${port}');
