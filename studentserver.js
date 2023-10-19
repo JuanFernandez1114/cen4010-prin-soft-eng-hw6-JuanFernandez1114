@@ -93,6 +93,7 @@ app.post('/students', function (req, res) {//creates a new student obj with all 
       console.log('Directory already exists!');
     }
     if (checkStudentExists() == false) {
+      console.log("writing student to file:" + obj)
       fs.writeFile("students/" + record_id + ".json", str, function (err) {//writes to the students directory
         var rsp_obj = {};
         if (err) {
