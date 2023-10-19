@@ -2,3 +2,4 @@
 JUAN fERNANDEZ
 *Z23687565 
 
+![HW6 - Juan Fernandez video](https://github.com/JuanFernandez1114/cen4010-prin-soft-eng-hw6new-JuanFernandez1114/assets/144076322/e42898f1-21c5-4594-a422-563fa09350cd)
